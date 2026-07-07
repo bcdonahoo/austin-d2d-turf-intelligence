@@ -1,5 +1,7 @@
 # Austin D2D Turf Intelligence
 
+![Terminal walkthrough looping through a live outage poll, a demo seed, turf scoring, and a compliance check](assets/terminal-demo.svg)
+
 Not affiliated with Austin Energy, KUBRA, or Base Power. Uses only public,
 unauthenticated map endpoints at a deliberately gentle polling cadence.
 
