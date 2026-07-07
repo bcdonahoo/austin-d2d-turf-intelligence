@@ -1,0 +1,115 @@
+# D2D market compliance registry — Texas municipalities
+#
+# Every record carries its sources and a status field. Nothing here should be
+# treated as launch-ready until status == verified, meaning a human confirmed
+# it against the current ordinance text or the issuing authority.
+#
+# status values:
+#   researched — sourced from official/city pages or reporting; needs
+#                confirmation against current ordinance text before launch
+#   verified   — confirmed with issuing authority; record launch-blocking
+#                fields (permit, hours) are current
+#   stale      — last_verified older than review_interval_days
+#
+# Statewide baseline (applies in every Texas market, layered under city rules):
+#   - A posted "No Soliciting" / "No Trespassing" sign constitutes notice under
+#     Texas Penal Code 30.05; knocking past it is criminal trespass exposure.
+#   - HOA-level and subdivision-entrance signage can bar an entire neighborhood.
+#   - Reps must leave immediately when asked; refusal escalates to trespass.
+
+defaults:
+  state: TX
+  review_interval_days: 90
+  sign_compliance_required: true
+  leave_on_request_required: true
+
+markets:
+  - market: Austin
+    county: Travis
+    permit_required: false
+    permit_notes: >
+      No city-wide commercial door-to-door solicitation permit identified.
+      City Code Ch. 9-4 regulates solicitation conduct (aggressive
+      solicitation, repeated requests after refusal); 9-4-22 bars charitable
+      door solicitation 9:00 PM - 9:00 AM. Commercial knocking-hour limits are
+      not clearly codified city-wide — treat 9:00 AM - 7:00 PM as the
+      conservative operating window pending city clerk confirmation.
+    hours:
+      weekday: {start: "09:00", end: "19:00"}
+      weekend: {start: "10:00", end: "18:00"}
+    hours_basis: conservative-policy   # company policy, not verified ordinance
+    dnk_list: none_published
+    hoa_notes: >
+      Many Austin subdivisions post entrance-level no-solicitation signs;
+      these bind the whole neighborhood. Maintain an internal no-knock layer.
+    sources:
+      - https://library.municode.com/tx/austin/codes/code_of_ordinances
+      - https://services.austintexas.gov/edims/document.cfm?id=94345
+    status: researched
+    last_verified: 2026-07-07
+
+  - market: Round Rock
+    county: Williamson
+    permit_required: true
+    permit_authority: Round Rock Police Department, 2701 N. Mays St.
+    permit_type: Solicitor/Peddler/Canvasser ID card (per rep)
+    permit_fee_usd: 50
+    permit_validity_days: 90
+    permit_notes: >
+      ID card required for any personal contact with residents. Applications
+      accepted 8 AM - 5 PM weekdays at RRPD; appointments for groups of 3+.
+      City explicitly notes some neighborhood associations prohibit
+      door-to-door sales even with a valid card.
+    hours:
+      weekday: {start: "09:00", end: "19:00"}
+      weekend: {start: "10:00", end: "18:00"}
+    hours_basis: conservative-policy   # confirm codified hours with RRPD
+    dnk_list: none_published
+    sources:
+      - https://www.roundrocktexas.gov/city-businesses/solicitor-permits/
+    status: researched
+    last_verified: 2026-07-07
+
+  - market: Lakeway
+    county: Travis
+    permit_required: true
+    permit_authority: City of Lakeway
+    permit_type: Solicitor license (worn at all times); annual renewal
+    permit_notes: >
+      License required and must be worn during visits; exemptions for
+      school/political/religious canvassing unless fundraising. 2024 ordinance
+      revision set a 6:30 PM door-to-door cutoff. Residents are directed to
+      report unlicensed or after-hours solicitors to the police
+      non-emergency line — enforcement is active.
+    hours:
+      weekday: {start: "09:00", end: "18:30"}
+      weekend: {start: "10:00", end: "18:30"}
+    hours_basis: ordinance-reported    # per Community Impact reporting, 2024
+    dnk_list: none_published
+    sources:
+      - https://communityimpact.com/austin/lake-travis-westlake/government/2024/09/19/lakeway-bans-door-to-door-solicitation-after-630-pm-updates-rules/
+    status: researched
+    last_verified: 2026-07-07
+
+  - market: Dallas
+    county: Dallas
+    permit_required: true
+    permit_authority: Dallas Police Department Records Unit
+    permit_type: Solicitor's permit ID card (per rep); valid 1 year
+    permit_notes: >
+      Permit ID must be conspicuously worn and visible at all times.
+      Home solicitation allowed 9 AM to sunset, Monday-Saturday only —
+      no Sundays — excluding listed holidays (New Year's, MLK, Presidents,
+      Memorial, July 4, Labor, Columbus, Veterans, Thanksgiving, Christmas).
+      Solicitation barred at any residence displaying a no-solicitors sign.
+    hours:
+      weekday: {start: "09:00", end: "sunset"}
+      saturday: {start: "09:00", end: "sunset"}
+      sunday: prohibited
+    hours_basis: ordinance-reported
+    holidays_prohibited: true
+    dnk_list: none_published
+    sources:
+      - https://www.dallaspolice.net/abouts/solicitorspermit
+    status: researched
+    last_verified: 2026-07-07
