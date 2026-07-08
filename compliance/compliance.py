@@ -142,6 +142,13 @@ def check(doc: dict, market: str, when: dt.datetime) -> tuple[bool, list[str]]:
     if m.get("dnk_list") not in (None, "none_published"):
         findings.append(f"DNK: consult do-not-knock list: {m['dnk_list']}")
 
+    if m.get("sources"):
+        findings.append("SOURCES: " + "; ".join(m["sources"]))
+    findings.append(
+        f"VERIFIED: status={m.get('status')}, last_verified="
+        f"{m.get('last_verified')} — see markets.yaml for full record"
+    )
+
     return go, findings
 
 

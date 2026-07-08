@@ -106,6 +106,8 @@ NO-GO — Round Rock, Saturday 2026-07-11 18:45
   - ACTION: confirm every rep on today's turf holds a current permit/ID before knock-out.
   - BLOCK: 18:45 is outside the 10:00-18:00 window for Saturday.
   - SIGNS: posted no-soliciting/no-trespassing signs are binding (TX Penal Code 30.05) — includes subdivision-entrance signage.
+  - SOURCES: https://www.roundrocktexas.gov/city-businesses/solicitor-permits/
+  - VERIFIED: status=researched, last_verified=2026-07-07 — see markets.yaml for full record
 ```
 
 Design choices worth noting:
@@ -126,6 +128,23 @@ Design choices worth noting:
 - **Audit catches structural traps**, e.g. Round Rock's 90-day permit
   validity being no longer than the record review interval, which means
   per-rep permit expiry must be tracked separately from market verification.
+
+## Data provenance
+
+Seed records were researched on 2026-07-07 from the following sources, each
+also cited in the record's own `sources` field in `markets.yaml` (and now
+echoed in every `check` result via the `SOURCES:` / `VERIFIED:` findings).
+All records are marked `researched`, not `verified`: nothing here is
+launch-ready until confirmed against current ordinance text with the issuing
+authority.
+
+| Market | Primary source |
+|---|---|
+| Austin | Austin Code of Ordinances (Municode) — https://library.municode.com/tx/austin/codes/code_of_ordinances; City Code 9-4-22 ordinance text — https://services.austintexas.gov/edims/document.cfm?id=94345 |
+| Round Rock | https://www.roundrocktexas.gov/city-businesses/solicitor-permits/ |
+| Lakeway | https://communityimpact.com/austin/lake-travis-westlake/government/2024/09/19/lakeway-bans-door-to-door-solicitation-after-630-pm-updates-rules/ |
+| Dallas | https://www.dallaspolice.net/abouts/solicitorspermit |
+| Statewide baseline | Texas Penal Code 30.05 (criminal trespass; posted-sign notice) |
 
 ## Extending
 
